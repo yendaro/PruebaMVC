@@ -1,0 +1,92 @@
+﻿@model MVCUsuario.Models.Usuario
+
+@{
+    ViewBag.Title = "Listado Usuarios";
+}
+
+
+
+<div class="container">
+    <h2>Usuarios</h2>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Nuevo Usuario</button><br /><br />
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Direccion</th>
+                <th>FechaNacimiento</th>
+                <th>TipDocumento</th>
+                <th>Documento</th>
+                <th>Pais</th>
+                <th>Departamento</th>
+                <th>Ciudad</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+        </tbody>
+    </table>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Add Usuario</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                        <input type="hidden" class="form-control" id="IdUsuario" placeholder="Nombre" />
+                    <div class="form-group">
+                        <label for="Nombre">Nombre</label>
+                        <input type="text" class="form-control" id="Nombre" placeholder="Nombre" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Direccion">Direccion</label>
+                        <input type="text" class="form-control" id="Direccion" placeholder="Direccion" />
+                    </div>
+                    <div class="form-group">
+                        <label for="FechaNacimiento">Fecha Nacimiento</label>
+                        <input type="date" class="form-control" id="FechaNacimiento1" placeholder="FechaNacimiento" />
+                    </div>
+ 
+                    <div class="form-group">
+                        <label for="TipoDocumento">Tipo Documento</label>
+                    @Html.DropDownList("cmbTiposDocumentos", ViewBag.TiposList as List<SelectListItem>, "Seleccionar Tipo", new { @class = "form-control" }) 
+         </div>
+                    <div class="form-group">
+                        <label for="NumeroDocumento">Documento</label>
+                        <input type="text" class="form-control" id="NumeroDocumento" placeholder="NumeroDocumento" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Pais">Pais</label>
+                        @Html.DropDownList("cmbPaises", ViewBag.PaisList as List<SelectListItem>, "Seleccionar Pais", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label for="Departamento">Departamento/Estado</label>
+                        <input type="text" class="form-control" id="Departamento" placeholder="Departamento" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Ciudad">Ciudad</label>
+                        <input type="text" class="form-control" id="Ciudad" placeholder="Ciudad" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnCrear" onclick="return Crear();">Crear</button>
+                <button type="button" class="btn btn-primary" id="btnActualizar" style="display:none;" onclick="Actualizar();">Actualizar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/usuario.js"></script>
+}
+
